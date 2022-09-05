@@ -1,11 +1,5 @@
 ﻿using Sitecore.ContentSearch.Utilities;
-using Sitecore.Data.Fields;
-using Sitecore.XA.Foundation.Search.Attributes;
 using Sitecore.XA.Foundation.Search.Pipelines.ResolveSearchQueryTokens;
-using System;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
 using System.Web;
 
 namespace CustomSXA.Foundation.Search.SearchQueryToken
