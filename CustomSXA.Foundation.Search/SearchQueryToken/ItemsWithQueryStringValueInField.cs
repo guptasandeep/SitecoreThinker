@@ -1,5 +1,4 @@
 ﻿using Sitecore.ContentSearch.Utilities;
-using Sitecore.Data.Fields;
 using Sitecore.XA.Foundation.Search.Attributes;
 using Sitecore.XA.Foundation.Search.Pipelines.ResolveSearchQueryTokens;
 using System;
