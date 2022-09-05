@@ -10,9 +10,9 @@ using System.Web;
 
 namespace CustomSXA.Foundation.Search.SearchQueryToken
 {
-    public class ItemsWithQueryStringValueInFieldAnyWord : ItemsWithQueryStringValueInField
+    public class ItemsWithQueryStringValueInFieldSubstringAnyWord : ItemsWithQueryStringValueInField
     {
-        protected override string TokenPart => nameof(ItemsWithQueryStringValueInFieldAnyWord);
+        protected override string TokenPart => nameof(ItemsWithQueryStringValueInFieldSubstringAnyWord);
 
         protected override string Operation { set; get; }
 
@@ -26,11 +26,16 @@ namespace CustomSXA.Foundation.Search.SearchQueryToken
             //split the search phrase into words and pass each word for filter with OR condition i.e. should operation
             //so we can filter result containing any of them.
             //note the should operation is set in the base class and was supplied from the scope query filter i.e. no toggle filter set in the scope so default is 'should'
-            string[] allWords = queryStringValue.Split(' ');        
+            string[] allWords = queryStringValue.Split(' ');
             for (int i = 0; i < allWords.Length; i++)
             {
-                args.Models.Insert(index, this.BuildModel(paramName, allWords[i])); //pass the field and field value for filter
-                args.Models.Remove(model);
+                if (!string.IsNullOrEmpty(allWords[i]))
+                {
+                    //pass the field name and value for filter.
+                    //Since * is applied in start and end, it will be considered as substring.
+                    args.Models.Insert(index, this.BuildModel(paramName, "*" + allWords[i] + "*"));
+                    args.Models.Remove(model);
+                }
             }
             args.Models.Insert(index, this.BuildModel(paramName, queryStringValue)); //pass the query string value i.e. the input words phrase
             args.Models.Remove(model);

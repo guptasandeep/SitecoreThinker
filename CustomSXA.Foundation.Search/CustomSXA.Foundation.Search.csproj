@@ -158,6 +158,8 @@
   <ItemGroup>
     <Compile Include="ComputedFields\FullName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldSubstringAnyWord.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldStartsWithAnyWord.cs" />
     <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldAnyWord.cs" />
     <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldExactMatch.cs" />
     <Compile Include="SearchQueryToken\ItemsWithMultipleQueryStringValueInField.cs" />

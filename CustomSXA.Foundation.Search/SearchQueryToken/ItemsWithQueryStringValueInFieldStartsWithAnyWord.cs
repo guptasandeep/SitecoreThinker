@@ -10,9 +10,9 @@ using System.Web;
 
 namespace CustomSXA.Foundation.Search.SearchQueryToken
 {
-    public class ItemsWithQueryStringValueInFieldAnyWord : ItemsWithQueryStringValueInField
+    public class ItemsWithQueryStringValueInFieldStartsWithAnyWord : ItemsWithQueryStringValueInField
     {
-        protected override string TokenPart => nameof(ItemsWithQueryStringValueInFieldAnyWord);
+        protected override string TokenPart => nameof(ItemsWithQueryStringValueInFieldStartsWithAnyWord);
 
         protected override string Operation { set; get; }
 
@@ -29,8 +29,13 @@ namespace CustomSXA.Foundation.Search.SearchQueryToken
             string[] allWords = queryStringValue.Split(' ');        
             for (int i = 0; i < allWords.Length; i++)
             {
-                args.Models.Insert(index, this.BuildModel(paramName, allWords[i])); //pass the field and field value for filter
-                args.Models.Remove(model);
+                if (!string.IsNullOrEmpty(allWords[i]))
+                {
+                    //pass the field name and value for filter.
+                    //Since * is applied in end, it will consider result items where field value starts with the given input words.
+                    args.Models.Insert(index, this.BuildModel(paramName, allWords[i] + "*")); 
+                    args.Models.Remove(model);
+                }
             }
             args.Models.Insert(index, this.BuildModel(paramName, queryStringValue)); //pass the query string value i.e. the input words phrase
             args.Models.Remove(model);
