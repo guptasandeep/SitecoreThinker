@@ -152,10 +152,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Config\Include\Foundation\CustomSXA.Foundation.Search.config" />
+    <Content Include="App_Config\Include\Foundation\CustomSXA.Foundation.Search.ComputedFields.config" />
     <None Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComputedFields\FullName.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldSubstringAnyWord.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldStartsWithAnyWord.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldAnyWord.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldExactMatch.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithMultipleQueryStringValueInField.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInFieldAllWords.cs" />
+    <Compile Include="SearchQueryToken\ItemsWithQueryStringValueInField.cs" />
     <Compile Include="SearchQueryToken\CustomItemsWithTheSameValueInField.cs" />
     <Compile Include="SearchQueryToken\ItemsWithIDsInFieldAsCurrentPage.cs" />
   </ItemGroup>
