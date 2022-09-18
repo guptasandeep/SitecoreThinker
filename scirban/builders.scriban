@@ -1,0 +1,15 @@
+<b>{{i_item.Title}}</b>
+
+<div class="d-flex flex-wrap w-25 m-2" >  
+{{ for i_location in (sc_followlocations i_item "Real Estate Projects Locations") }}
+<br/>    
+	{{o_geospatial = st_geospatial i_location 'Kilometers'}}
+	{{ if o_geospatial }}
+		<div class="m-1">
+			<p> {{i_location.name}}, 
+				Distance: {{ o_geospatial.distance | math.round 1 }} {{ o_geospatial.unit }}
+			</p>
+		</div>
+    {{end}}
+{{ end }}
+</div>
