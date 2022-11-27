@@ -13,7 +13,8 @@ namespace CustomSXA.Foundation.Search.Helper
     /// </summary>
     public static class GeoLocationHelper
     {
-        public static Coordinate GetLocationCentre(string key = "g")
+        //give cg priority if not found then g is looked up
+        public static Coordinate GetLocationCentre(string key = "cg")
         {
             IRendering rendering = ServiceLocator.ServiceProvider.GetService<IRendering>();
             if (rendering == null)
@@ -49,9 +50,9 @@ namespace CustomSXA.Foundation.Search.Helper
                 }
             }
 
-            if (string.Equals(key, "cg")) //end the recursive call
+            if (string.Equals(key, "g")) //end the recursive call
                 return null;
-            return GetLocationCentre("cg"); //recursive call to check for cg key value
+            return GetLocationCentre("g"); //recursive call to check for g key value
         }
 
         private static string GetURLRefererQueryStringParamValue(string paramName)
